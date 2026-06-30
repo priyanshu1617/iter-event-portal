@@ -1,0 +1,4 @@
+allowBuilds:
+  node: true
+  sharp: false
+  unrs-resolver: false
