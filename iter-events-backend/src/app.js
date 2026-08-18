@@ -30,7 +30,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 function startServer(port = PORT) {
-  const server = app.listen(port, () => {
+  const server = app.listen(port, '0.0.0.0', () => {
     const activePort = server.address()?.port || port;
     console.log(`\n🚀  ITER Events API → http://localhost:${activePort}`);
     console.log(`    Health  → http://localhost:${activePort}/health`);

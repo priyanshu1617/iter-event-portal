@@ -4,16 +4,16 @@ import { useDeferredValue, useEffect, useState, useRef } from 'react';
 import { backendApi, type ClubSummary, type CreateEventInput, type EventRecord } from '@/lib/backend-client';
 
 const CBGMAP: Record<string, string> = {
-  'CSE Tech Club': 'linear-gradient(135deg,#1a3456,#0e1828)',
-  'Robotics Club': 'linear-gradient(135deg,#162a1e,#0a1210)',
-  'Music Society': 'linear-gradient(135deg,#361608,#180a04)',
-  'Cultural Committee': 'linear-gradient(135deg,#28143e,#10091e)',
-  'Photography Club': 'linear-gradient(135deg,#241808,#0e0c04)',
-  'Gaming Club': 'linear-gradient(135deg,#24103a,#0e0818)',
-  'E-Cell ITER': 'linear-gradient(135deg,#261e0a,#100e04)',
-  'GDG Cloud BBSR': 'linear-gradient(135deg,#1a3458,#0e1828)',
-  'GeeksforGeeks ITER': 'linear-gradient(135deg,#0e2a08,#061202)',
-  'IEEE ITER': 'linear-gradient(135deg,#0a2618,#050e0a)'
+  'CSE Tech Club': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'Robotics Club': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'Music Society': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'Cultural Committee': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'Photography Club': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'Gaming Club': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("/valorant.jpg") center/cover no-repeat',
+  'E-Cell ITER': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'GDG Cloud BBSR': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'GeeksforGeeks ITER': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop") center/cover no-repeat',
+  'IEEE ITER': 'linear-gradient(to top, #0c0618 0%, rgba(12,6,24,0.1) 100%), url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop") center/cover no-repeat'
 };
 
 const CAROUSEL_SLIDES = [
@@ -431,7 +431,6 @@ export default function Home() {
               return (
                 <div key={ev.id} className={`ev-card ${bm ? 'bm' : ''}`}>
                   <div className="ev-img" style={{ background: CBGMAP[ev.club?.name] || 'linear-gradient(135deg,#1c0d30,#0c0618)' }}>
-                    <div className="ev-img-spot"></div><span className="ev-emoji">{ev.emoji}</span>
                     <div className={`ev-status ${ev.status.toLowerCase()}`}>{ev.status}</div>
                     <div className="ev-badges">{ev.trending && <span className="badge-trend">🔥 Trending</span>}</div>
                     <button className={`bm-btn ${bm ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); toggleBm(ev.id); }}>🔖</button>
@@ -512,7 +511,6 @@ export default function Home() {
             {clubs.map(c => (
               <div key={c.id} className="club-card">
                 <div className="club-top" style={{ background: CBGMAP[c.name] || 'linear-gradient(135deg,#0c1d38,#060c18)' }}>
-                  <span className="club-emoji">{c.emoji}</span>
                 </div>
                 <div className="club-info">
                   <div className="club-nm">{c.name}</div>
@@ -578,8 +576,8 @@ export default function Home() {
           <div className="vid-strip sr" data-d="4">
             <div className="vid-meta"><span>🎬 <strong>ITER Campus</strong> Highlight</span><span>📅 <strong>2025</strong> Edition</span><span>🎓 <strong>SOA University</strong></span></div>
             <div className="vid-ctas">
-              <a href="https://www.youtube.com/watch?v=YSkHkinjTq0" target="_blank" className="btn-ghost" style={{ fontSize: '12px', padding: '7px 13px' }}>Watch on YouTube ↗</a>
-              <a href="#events-sec" className="btn-pri" style={{ fontSize: '12px', padding: '7px 13px' }}>Explore Events →</a>
+              <a href="https://www.youtube.com/watch?v=YSkHkinjTq0" target="_blank" className="btn-ghost" style={{ fontSize: '14px', padding: '9px 16px' }}>Watch on YouTube ↗</a>
+              <a href="#events-sec" className="btn-pri" style={{ fontSize: '14px', padding: '9px 16px' }}>Explore Events →</a>
             </div>
           </div>
         </div>
@@ -596,7 +594,11 @@ export default function Home() {
 
       <footer>
         <div className="ft-logo"><div className="ft-logo-ic">IE</div><span className="ft-logo-t">ITER <em>Events</em></span></div>
-        <span className="ft-copy">© 2026 ITER Event Portal · Siksha O Anusandhan, Bhubaneswar</span>
+        <div className="ft-copy" style={{ textAlign: 'center' }}>
+          <span>© 2026 ITER Event Portal · Siksha O Anusandhan, Bhubaneswar</span>
+          <br />
+          <span style={{ opacity: 0.7, fontSize: '0.9em', marginTop: '6px', display: 'inline-block' }}>Powered by Priyanshu Chandra</span>
+        </div>
         <div className="ft-links"><a href="#">Privacy</a><a href="#">Contact</a><a href="#">Help</a></div>
       </footer>
 

@@ -10,7 +10,7 @@ function getEvents(req, res) {
   if (category && category !== 'all') {
     result = result.filter(e => e.category.toLowerCase() === category.toLowerCase());
   }
-  if (status) {
+  if (status && status !== 'all') {
     result = result.filter(e => e.status.toLowerCase() === status.toLowerCase());
   }
   if (search) {
