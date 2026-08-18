@@ -344,7 +344,7 @@ export default function Home() {
       <div id="carousel-sec">
         <div className="car-header">
           <div className="tag or sr" style={{ display: 'inline-flex' }}>🎆 Live Now</div>
-          <h2 className="sec-h sr" data-d="1">What's Happening <span className="a">Now</span></h2>
+          <h2 className="sec-h sr" data-d="1">What&apos;s Happening <span className="a">Now</span></h2>
           <p className="sec-p sr" data-d="2" style={{ margin: '0 auto', maxWidth: '320px', fontSize: '13px' }}>Auto-advances every 4s. Swipe on mobile.</p>
         </div>
         <div className="car-wrap">
@@ -466,7 +466,7 @@ export default function Home() {
       <section id="upcoming" className="sec">
         <div className="wrap">
           <div className="sec-center">
-            <div className="tag or sr" style={{ display: 'inline-flex' }}>Don't Miss</div>
+            <div className="tag or sr" style={{ display: 'inline-flex' }}>Don&apos;t Miss</div>
             <h2 className="sec-h sr" data-d="1">Highlighted <span className="a">Events</span></h2>
             <p className="sec-p sr" data-d="2">Hand-picked highlights from across all ITER clubs.</p>
           </div>
@@ -479,7 +479,7 @@ export default function Home() {
                 <div className="hl-live-pill"><span className="hl-dot"></span>Live Registration</div>
                 <div className="hl-club">CSE Tech Club</div>
                 <div className="hl-title">HackITER<br/>2025</div>
-                <div className="hl-desc">36-hour national hackathon. Build what's next — AI, Web3, embedded systems.</div>
+                <div className="hl-desc">36-hour national hackathon. Build what&apos;s next — AI, Web3, embedded systems.</div>
                 <div className="cd"><div className="cdu"><span className="cdu-n" id="cdD">00</span><span className="cdu-l">Days</span></div><div className="cdu"><span className="cdu-n" id="cdH">00</span><span className="cdu-l">Hrs</span></div><div className="cdu"><span className="cdu-n" id="cdM">00</span><span className="cdu-l">Min</span></div><div className="cdu"><span className="cdu-n" id="cdS">00</span><span className="cdu-l">Sec</span></div></div>
                 <div className="hl-meta"><span>📅 Mar 15–16, 2025</span><span>📍 Main Auditorium</span><span>👥 Teams 2–4</span></div>
                 <div className="hl-ctas">
@@ -547,7 +547,7 @@ export default function Home() {
                 <div className="kb-keys" id="kbody">
                   <div className="kb-row"><div className="key k1" data-k="`">~</div><div className="key k1" data-k="1">1</div><div className="key k1" data-k="2">2</div><div className="key k1" data-k="3">3</div><div className="key k1" data-k="4">4</div><div className="key k1" data-k="5">5</div><div className="key k1" data-k="6">6</div><div className="key k1" data-k="7">7</div><div className="key k1" data-k="8">8</div><div className="key k1" data-k="9">9</div><div className="key k1" data-k="0">0</div><div className="key k1" data-k="-">−</div><div className="key k1" data-k="=">=</div><div className="key k2" data-k="Backspace">⌫</div></div>
                   <div className="kb-row"><div className="key k15" data-k="Tab">Tab</div><div className="key k1" data-k="q">Q</div><div className="key k1" data-k="w">W</div><div className="key k1" data-k="e">E</div><div className="key k1" data-k="r">R</div><div className="key k1" data-k="t">T</div><div className="key k1" data-k="y">Y</div><div className="key k1" data-k="u">U</div><div className="key k1" data-k="i">I</div><div className="key k1" data-k="o">O</div><div className="key k1" data-k="p">P</div><div className="key k1" data-k="[">[</div><div className="key k1" data-k="]">]</div><div className="key k15" data-k="\">\</div></div>
-                  <div className="kb-row"><div className="key k17" data-k="CapsLock">Caps</div><div className="key k1" data-k="a">A</div><div className="key k1" data-k="s">S</div><div className="key k1" data-k="d">D</div><div className="key k1" data-k="f">F</div><div className="key k1" data-k="g">G</div><div className="key k1" data-k="h">H</div><div className="key k1" data-k="j">J</div><div className="key k1" data-k="k">K</div><div className="key k1" data-k="l">L</div><div className="key k1" data-k=";">;</div><div className="key k1" data-k="'">'</div><div className="key k22" data-k="Enter">Enter ↵</div></div>
+                  <div className="kb-row"><div className="key k17" data-k="CapsLock">Caps</div><div className="key k1" data-k="a">A</div><div className="key k1" data-k="s">S</div><div className="key k1" data-k="d">D</div><div className="key k1" data-k="f">F</div><div className="key k1" data-k="g">G</div><div className="key k1" data-k="h">H</div><div className="key k1" data-k="j">J</div><div className="key k1" data-k="k">K</div><div className="key k1" data-k="l">L</div><div className="key k1" data-k=";">;</div><div className="key k1" data-k="'">&apos;</div><div className="key k22" data-k="Enter">Enter ↵</div></div>
                   <div className="kb-row"><div className="key k25" data-k="Shift">⇧</div><div className="key k1" data-k="z">Z</div><div className="key k1" data-k="x">X</div><div className="key k1" data-k="c">C</div><div className="key k1" data-k="v">V</div><div className="key k1" data-k="b">B</div><div className="key k1" data-k="n">N</div><div className="key k1" data-k="m">M</div><div className="key k1" data-k=",">,</div><div className="key k1" data-k=".">.</div><div className="key k1" data-k="/">/</div><div className="key k25" data-k="Shift">⇧</div></div>
                   <div className="kb-row"><div className="key k15" data-k="Ctrl">Ctrl</div><div className="key k15" data-k="Alt">Alt</div><div className="key ksp" data-k=" ">SPACE</div><div className="key k15" data-k="Alt">Alt</div><div className="key k15" data-k="Ctrl">Ctrl</div></div>
                 </div>
