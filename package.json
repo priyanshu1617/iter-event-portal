@@ -1,0 +1,12 @@
+{
+  "name": "iter-events-monorepo",
+  "version": "1.0.0",
+  "description": "Root configuration to run frontend and backend concurrently",
+  "scripts": {
+    "install:all": "npm install --prefix iter-events-backend && npm install --prefix iter-events-frontend",
+    "dev": "concurrently \"npm run dev --prefix iter-events-backend\" \"npm run dev --prefix iter-events-frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
