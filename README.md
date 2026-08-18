@@ -1,6 +1,4 @@
 # ITER Event Portal
-
-![Live Demo](https://img.shields.io/badge/Live_Demo-iter--events--eight.vercel.app-success?style=for-the-badge&logo=vercel)
 **[Click here to view the live website!](https://iter-events-eight.vercel.app)**
 
 ITER Event Portal is a full-stack, centralized platform for discovering, managing, and registering for campus events at ITER, SOA University. It features a modern, cinematic UI with interactive components and a seamless backend.
