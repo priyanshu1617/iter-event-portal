@@ -3,8 +3,8 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ITER Events Frontend',
-  description: 'Frontend connected to the ITER Events Express backend',
+  title: 'ITER Events Portal',
+  description: 'Discover, manage, and register for campus events at ITER, SOA University.',
   generator: 'Codex',
   icons: {
     icon: [
