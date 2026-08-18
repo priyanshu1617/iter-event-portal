@@ -1,183 +1,86 @@
-# ITER Events 
+# ITER Event Portal
 
-ITER Events is a small full-stack campus event platform with:
+ITER Event Portal is a full-stack, centralized platform for discovering, managing, and registering for campus events at ITER, SOA University. It features a modern, cinematic UI with interactive components and a seamless backend.
 
-- a Next.js frontend in `iter-events-frontend`
-- an Express backend in `iter-events-backend`
-- an in-memory data store seeded with demo clubs and demo events
+## 🚀 Features
 
-The frontend is already connected to the backend API and the project has been verified to run in its current structure.
+- **Cinematic Frontend:** A stunning Next.js interface with custom CSS animations, translucent glassmorphism effects, and dynamic event carousels.
+- **Club Admin Dashboard:** Secure JWT authentication for club administrators to publish, manage, and delete their own events.
+- **Event Discovery:** Filter events by category, search by name, and check live availability of seats.
+- **Instant Registration:** Attendee registration with automatic waitlisting when capacity is reached.
+- **Bookmarking:** Save favorite events using email-based persistence.
+- **Unified Dev Environment:** Run both the frontend and backend simultaneously with a single command.
 
-## Project structure
+## 📁 Project Structure
+
+The project is structured as a monorepo containing both the frontend and backend:
 
 ```text
-iter-events-backend/
-  src/
-    app.js
-    routes/
-    controllers/
-    data/store.js
-
-iter-events-frontend/
-  app/
-  components/
-  lib/
-  .env.local
+iter_event_portal/
+├── iter-events-frontend/    # Next.js 15, React, Custom UI
+│   ├── app/                 # Next.js App Router (page.tsx, globals.css)
+│   ├── components/          # Reusable React components
+│   └── public/              # Static assets (images, icons)
+│
+├── iter-events-backend/     # Express.js API
+│   ├── src/                 # Controllers, Routes, and in-memory Data Store
+│   └── package.json
+│
+├── package.json             # Root workspace config (concurrently)
+└── .gitignore               # Root git ignores
 ```
 
-## Main features
+## 🛠️ How to Run Locally
 
-- Club login with JWT authentication
-- Event listing with search, status filtering, category filtering, and sorting
-- Club event publishing
-- Club-owned event deletion
-- Attendee registration and automatic waitlisting when seats are full
-- Bookmarking events by attendee email
-- Club directory view
-- Persistent frontend session in browser local storage
+You only need one terminal! The project is configured with `concurrently` to run both the API and the web app together.
 
-## Verified working
-
-The following flows were tested successfully:
-
-- Backend startup
-- `GET /health`
-- `GET /api/events`
-- `POST /api/auth/login`
-- `POST /api/events`
-- `POST /api/registrations`
-- `GET /api/registrations/check`
-- `POST /api/bookmarks/toggle`
-- `GET /api/bookmarks`
-- `DELETE /api/events/:eventId`
-- Frontend lint
-- Frontend typecheck
-- Frontend production build
-
-## Important note about data
-
-The backend uses an in-memory store in `iter-events-backend/src/data/store.js`.
-
-That means:
-
-- seeded clubs and seeded events are loaded from code
-- registrations, bookmarks, and newly created events are reset when the backend restarts
-- no MongoDB or external database setup is required
-
-## Demo login
-
-All seeded clubs use:
-
-- Password: `demo123`
-
-Example club IDs:
-
-- `ITER_CSE_TECH`
-- `ITER_ROBOTICS`
-- `ITER_MUSIC`
-- `ITER_CULTURAL`
-- `ITER_GAMING`
-
-## How to run
-
-### 1. Start the backend
-
+### 1. Install Dependencies
+Install packages for the root, frontend, and backend all at once:
 ```bash
-cd iter-events-backend
-npm install
+npm run install:all
+```
+
+### 2. Start the Application
+Start both the Express backend and the Next.js frontend simultaneously:
+```bash
 npm run dev
 ```
 
-Backend defaults:
+- **Frontend Website:** [http://localhost:3000](http://localhost:3000)
+- **Backend API:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-- `PORT=5000`
-- `CORS_ORIGIN=http://localhost:3000`
-- `JWT_SECRET=iter-events-dev-secret-change-me`
+## 🔐 Club Admin Login (Demo)
 
-### 2. Start the frontend
+The backend runs an in-memory data store seeded with demo clubs. You can test the platform using the following credentials:
 
-```bash
-cd iter-events-frontend
-npm install
-npm run dev
-```
+- **Password:** `demo123` (for all clubs)
 
-Open:
+**Available Club IDs:**
+- `ITER_CSE_TECH` (CSE Tech Club)
+- `ITER_ROBOTICS` (Robotics Club)
+- `ITER_MUSIC` (Music Society)
+- `ITER_CULTURAL` (Cultural Committee)
+- `ITER_GAMING` (Gaming Club)
 
-```text
-http://localhost:3000
-```
+## 📡 API Overview
 
-## Frontend runtime note
+The backend provides a full REST API for the portal:
 
-The machine where this project was verified has global Node `18.19.1`.
+**Authentication**
+- `POST /api/auth/login` - Authenticate club admins
+- `GET /api/auth/me` - Verify session
 
-To keep the frontend working without requiring a system-wide Node upgrade, the frontend scripts are configured to run through a project-local Node 20 binary from `iter-events-frontend/node_modules/node/bin/node`.
+**Events & Clubs**
+- `GET /api/events` - List all events (supports filtering/search)
+- `POST /api/events` - Publish a new event (Auth required)
+- `DELETE /api/events/:eventId` - Delete an event (Auth required)
+- `GET /api/clubs` - List all clubs
 
-That means:
+**Registrations & Bookmarks**
+- `POST /api/registrations` - Register an attendee for an event
+- `POST /api/bookmarks/toggle` - Toggle event bookmark for an email
 
-- `npm run dev`
-- `npm run build`
-- `npm run start`
-- `npm run lint`
+## 📝 Important Notes
 
-all work through the local runtime defined in the frontend project.
-
-## Environment files
-
-### Backend
-
-File:
-
-- `iter-events-backend/.env`
-
-### Frontend
-
-File:
-
-- `iter-events-frontend/.env.local`
-
-Current frontend API target:
-
-```bash
-NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
-```
-
-## API overview
-
-### Auth
-
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-
-### Events
-
-- `GET /api/events`
-- `GET /api/events/:eventId`
-- `POST /api/events`
-- `PATCH /api/events/:eventId`
-- `DELETE /api/events/:eventId`
-
-### Clubs
-
-- `GET /api/clubs`
-- `GET /api/clubs/me/events`
-- `GET /api/clubs/:clubId/events`
-
-### Registrations
-
-- `POST /api/registrations`
-- `GET /api/registrations/check`
-- `GET /api/registrations`
-- `DELETE /api/registrations/:id`
-
-### Bookmarks
-
-- `GET /api/bookmarks`
-- `POST /api/bookmarks/toggle`
-
-## Extra project docs
-
-Frontend-specific setup details are also available in:
-
-- `iter-events-frontend/SETUP-GUIDE.md`
+- **In-Memory Database:** The backend currently uses an in-memory store (`iter-events-backend/src/data/store.js`). This means newly created events, registrations, and bookmarks will reset when the server restarts. No external database (like MongoDB) is required to run the project.
+- **Node Version:** The frontend is configured to run smoothly using a local Node binary to ensure compatibility. If you run into issues, ensure your global Node version is 18+. IPv6 local routing is disabled by using `127.0.0.1` for API calls to prevent Node 18+ networking conflicts.
