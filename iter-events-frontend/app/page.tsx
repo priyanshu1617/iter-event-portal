@@ -25,10 +25,17 @@ const CAROUSEL_SLIDES = [
   {bg:'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%), url("/valorant.jpg") center/cover no-repeat',emoji:'🏆',bc:'rgba(168,85,247,.12)',bbc:'rgba(168,85,247,.24)',bcc:'var(--violet)',bt:'Tournament',club:'Gaming Club',title:'VALORANT<br>Clash',desc:'5v5 esports. Form your squad, compete for ₹25,000.',meta:'📅 Mar 28–29 · 📍 Computer Lab · 🎮 ₹25k',seats:'8',sl:'Teams',btn:'Register Team →'},
 ];
 
+/** Helper function to pad numbers with leading zeros (e.g., 5 -> "05") */
 function pad(n: number) { return String(Math.max(0, n)).padStart(2, '0'); }
+/** Helper function to format a YYYY-MM-DD date string into a readable format like "Mar 15" */
 function fmtDate(d: string) { return new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
+/** Helper function to determine the color of the seat availability indicator based on fill percentage */
 function seatColor(s: number, f: number) { const p = f / s; return p >= 1 ? '#f43f5e' : p >= .7 ? 'var(--acc)' : 'var(--green)'; }
 
+/**
+ * Main Home Page Component
+ * Handles the display of the landing page, event listing, event carousels, and club admin interactions.
+ */
 export default function Home() {
   const [events, setEvents] = useState<EventRecord[]>([]);
   const [clubs, setClubs] = useState<ClubSummary[]>([]);
@@ -221,10 +228,12 @@ export default function Home() {
   }, []);
 
 
+  /** Displays a temporary toast notification in the bottom right corner */
   function showToast(title: string, msg: string, ico = '📢') {
     setToastMsg({ title, msg, ico });
   }
 
+  /** Toggles the local bookmark status for a specific event and updates localStorage */
   function toggleBm(id: string) {
     const next = new Set(bookmarks);
     if (next.has(id)) { next.delete(id); showToast('Removed', 'Bookmark removed', '🔖'); }
@@ -233,6 +242,7 @@ export default function Home() {
     localStorage.setItem('iter_bm', JSON.stringify([...next]));
   }
 
+  /** Authenticates a club admin using the backend API and updates the local session token */
   async function handleLogin() {
     if (!clubIdInput || !passwordInput) return showToast('Missing', 'Fill Club ID and Password', '⚠️');
     try {
@@ -247,6 +257,7 @@ export default function Home() {
     }
   }
 
+  /** Submits a newly drafted event to the backend API as an authenticated club admin */
   async function handlePublish() {
     if (!eventDraft.title || !eventDraft.date) return showToast('Incomplete', 'Title and Date required', '⚠️');
     try {

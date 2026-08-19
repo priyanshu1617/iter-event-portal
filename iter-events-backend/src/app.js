@@ -1,4 +1,8 @@
 // src/app.js
+/**
+ * Entry point for the ITER Events Express Backend.
+ * Sets up middleware, routing, and basic error handling.
+ */
 require('dotenv').config();
 
 const express = require('express');
@@ -29,6 +33,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 // ─── Start ────────────────────────────────────────────────────────────────────
+/**
+ * Starts the Express server and binds it to the specified port.
+ * @param {number} port - The port to listen on.
+ * @returns {import('http').Server} The active HTTP server instance.
+ */
 function startServer(port = PORT) {
   const server = app.listen(port, '0.0.0.0', () => {
     const activePort = server.address()?.port || port;

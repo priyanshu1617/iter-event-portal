@@ -1,3 +1,7 @@
+/**
+ * Represents a summarized view of a club.
+ * Used for listing clubs and attaching club data to events.
+ */
 export interface ClubSummary {
   id: string;
   clubId: string;
@@ -7,6 +11,10 @@ export interface ClubSummary {
   eventCount?: number;
 }
 
+/**
+ * Represents a complete event record returned from the backend.
+ * Includes details about the event, its status, and the club hosting it.
+ */
 export interface EventRecord {
   id: string;
   title: string;
@@ -78,6 +86,16 @@ interface BookmarkToggleResponse {
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || 'http://127.0.0.1:5000/api';
 
+/**
+ * Core fetch wrapper for making API calls to the backend.
+ * Automatically adds the Authorization header if a token is provided,
+ * handles JSON parsing, and standardizes error throwing.
+ *
+ * @param path - The API endpoint path (e.g., '/events')
+ * @param init - Fetch options (method, body, headers, etc.)
+ * @param token - Optional JWT token for authenticated routes
+ * @returns A promise resolving to the expected data payload
+ */
 async function request<T>(
   path: string,
   init: RequestInit = {},
@@ -148,6 +166,14 @@ export interface RegistrationInput {
   teamName?: string;
 }
 
+/**
+ * Utility function to append query parameters to a URL path.
+ * Ignores undefined values and 'all' filters to keep URLs clean.
+ *
+ * @param path - Base URL path
+ * @param query - Dictionary of query parameters
+ * @returns Path with query string appended
+ */
 function withQuery(path: string, query: Record<string, string | undefined>) {
   const params = new URLSearchParams();
 
@@ -161,6 +187,10 @@ function withQuery(path: string, query: Record<string, string | undefined>) {
   return suffix ? `${path}?${suffix}` : path;
 }
 
+/**
+ * The main API client object used by the frontend to interact with the backend.
+ * Contains methods for all supported REST endpoints.
+ */
 export const backendApi = {
   apiBaseUrl: API_BASE_URL,
   login(clubId: string, password: string) {

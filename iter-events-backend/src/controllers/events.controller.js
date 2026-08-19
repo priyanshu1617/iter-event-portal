@@ -2,6 +2,12 @@
 const { events, findEvent, formatEvent, deleteEventData, newId } = require('../data/store');
  
 // GET /api/events?category=&search=&sort=&status=
+/**
+ * Fetches a list of all events, applying optional query filters.
+ * Supports filtering by category, status, search string, and sorting.
+ * @param {import('express').Request} req - The Express request object containing query parameters.
+ * @param {import('express').Response} res - The Express response object.
+ */
 function getEvents(req, res) {
   const { category, search, sort = 'date', status } = req.query;
  
@@ -30,6 +36,11 @@ function getEvents(req, res) {
 }
  
 // GET /api/events/:eventId
+/**
+ * Fetches details for a single specific event by its ID.
+ * @param {import('express').Request} req - The Express request object with eventId param.
+ * @param {import('express').Response} res - The Express response object.
+ */
 function getEvent(req, res) {
   const event = findEvent(req.params.eventId);
   if (!event) return res.status(404).json({ success: false, message: 'Event not found.' });
@@ -37,6 +48,12 @@ function getEvent(req, res) {
 }
  
 // POST /api/events  (protected)
+/**
+ * Creates a new event for the currently authenticated club.
+ * Validates required fields and inserts the new event into the store.
+ * @param {import('express').Request} req - The Express request object with event body and req.club.
+ * @param {import('express').Response} res - The Express response object.
+ */
 function createEvent(req, res) {
   const { title, description, emoji, category, date, venue, maxSeats, prizePool, isFree } = req.body;
  
@@ -71,6 +88,12 @@ function createEvent(req, res) {
 }
  
 // PATCH /api/events/:eventId  (protected + ownership)
+/**
+ * Updates an existing event. Protected by ownership middleware.
+ * Only allows modification of specific fields to prevent data corruption.
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ */
 function updateEvent(req, res) {
   const event = req.event; // set by requireOwnership middleware
   const allowed = ['title','description','emoji','category','date','venue','maxSeats','status','trending','prizePool','isFree'];
@@ -83,6 +106,12 @@ function updateEvent(req, res) {
 }
  
 // DELETE /api/events/:eventId  (protected + ownership)
+/**
+ * Deletes an event and all its associated data (registrations, bookmarks).
+ * Protected by ownership middleware.
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ */
 function deleteEvent(req, res) {
   deleteEventData(req.params.eventId);
   res.json({ success: true, message: 'Event removed.' });
