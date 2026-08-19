@@ -1,6 +1,6 @@
 'use client';
 
-import { useDeferredValue, useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { backendApi, type ClubSummary, type CreateEventInput, type EventRecord } from '@/lib/backend-client';
 
 const CBGMAP: Record<string, string> = {
@@ -430,7 +430,7 @@ export default function Home() {
               const filling = ev.status === 'LIVE' && pct >= 65 && pct < 100;
               return (
                 <div key={ev.id} className={`ev-card ${bm ? 'bm' : ''}`}>
-                  <div className="ev-img" style={{ background: CBGMAP[ev.club?.name] || 'linear-gradient(135deg,#1c0d30,#0c0618)' }}>
+                  <div className="ev-img" style={{ background: CBGMAP[ev.club?.name || ''] || 'linear-gradient(135deg,#1c0d30,#0c0618)' }}>
                     <div className={`ev-status ${ev.status.toLowerCase()}`}>{ev.status}</div>
                     <div className="ev-badges">{ev.trending && <span className="badge-trend">🔥 Trending</span>}</div>
                     <button className={`bm-btn ${bm ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); toggleBm(ev.id); }}>🔖</button>
@@ -663,7 +663,7 @@ export default function Home() {
                 </div>
              ) : activeClubEvents.map(ev => (
                 <div key={ev.id} className="cev-card">
-                  <div className="cev-img" style={{ background: CBGMAP[ev.club?.name] }}>
+                  <div className="cev-img" style={{ background: CBGMAP[ev.club?.name || ''] }}>
                     <span style={{ position: 'relative', zIndex: 2 }}>{ev.emoji}</span>
                     <div className="cev-cat">{ev.category}</div>
                   </div>
